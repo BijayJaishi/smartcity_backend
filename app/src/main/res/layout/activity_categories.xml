@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bijay.smartcity_backend.categories">
+
+    <!--bleLayout
+        android:layout_width="426dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Open..." />
+
+            <TextView
+                android:gravity="right"
+                android:padding="5dip"
+                android:text="Ctrl-O" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Save..." />
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="Ctrl-S" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Save As..." />
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="Ctrl-Shift-S" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+
+            <TextView
+                android:padding="3dip"
+                android:text="X" />
+
+            <TextView
+                android:padding="3dip"
+                android:text="Import..." />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:padding="3dip"
+                android:text="X" />
+
+            <TextView
+                android:padding="3dip"
+                android:text="Export..." />
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="Ctrl-E" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Quit" />
+        </TableRow>
+
+
+    </TableLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+    <TextView
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Categories"
+        android:textColor="#000"
+        android:textSize="30dp"
+       />
+
+    <Button
+        android:id="@+id/addnew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="#FF0"
+        android:drawableLeft="@drawable/ic_add_black_24dp"
+        android:paddingEnd="10dp"
+        android:drawablePadding="5dp"
+        android:text="Add new"
+        android:paddingRight="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="80dp"
+        android:id="@+id/recyclerView"
+       >
+
+    </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
