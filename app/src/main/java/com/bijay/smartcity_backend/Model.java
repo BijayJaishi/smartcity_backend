@@ -32,4 +32,12 @@ class Modeladdcate {
     public void setId(String id) {
         this.id = id;
     }
+
+
+    @Override
+    public String toString()
+    {
+        return "ClassPojo [Id = "+id+", Item_Name = "+name+"]";
+    }
+
 }

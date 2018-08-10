@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".homepage" />
         <activity android:name=".categories" />
-        <activity android:name=".add_category"></activity>
+        <activity android:name=".component"></activity>
     </application>
 
 </manifest>
