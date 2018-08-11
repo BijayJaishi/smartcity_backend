@@ -21,7 +21,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -54,6 +56,9 @@ public class categories extends AppCompatActivity {
     ProgressDialog progressDialog;
     //List<Modeladdcate>modeladdcateList;
 
+    ToggleButton btn;
+    ExpandableRelativeLayout expandableRelativeLayout;
+
 
 
 
@@ -79,10 +84,7 @@ public class categories extends AppCompatActivity {
 
         //// progress dialog
 
-        progressDialog = new ProgressDialog(categories.this);
-        progressDialog.setMessage("Loading ....");
-        progressDialog.setCancelable(true);
-        progressDialog.show();
+
 
 
         databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://work1-1da82.firebaseio.com/Categories");
@@ -98,6 +100,22 @@ public class categories extends AppCompatActivity {
         getdatafirebase();
 
 
+        btn = (ToggleButton) findViewById(R.id.radioButton);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressDialog = new ProgressDialog(categories.this);
+                progressDialog.setMessage("Loading ....");
+                progressDialog.setCancelable(true);
+                progressDialog.show();
+                expandableRelativeLayout = (ExpandableRelativeLayout)findViewById(R.id.btnexpand);
+                expandableRelativeLayout.toggle();
+
+            }
+        });
+
+
+
     }
 
 
@@ -111,9 +129,9 @@ public class categories extends AppCompatActivity {
                 Modeladdcate data=dataSnapshot.getValue(Modeladdcate.class);
                 listdata.add(data);
                 recyclerView.setAdapter(myadapter);
-                if (progressDialog.isShowing()){
-                    progressDialog.dismiss();
-                }
+//                 if (progressDialog.isShowing()){
+//                    progressDialog.dismiss();
+//                }
 
             }
 
@@ -186,9 +204,10 @@ public class categories extends AppCompatActivity {
             holder.txt_item_name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Log.d("Catid", data.getId());
 
                     Intent intent=new Intent(categories.this,component.class);
-                    intent.putExtra("itemname",data.getName());
+                    intent.putExtra("Catid", data.getId());
 
                     startActivity(intent);
 
@@ -245,6 +264,7 @@ public class categories extends AppCompatActivity {
         View maddcate = inflater.inflate(R.layout.addcate_form, null);
 
         final MaterialEditText msector=maddcate.findViewById(R.id.sector);
+        final MaterialEditText mcategoryid=maddcate.findViewById(R.id.caterory_id);
         final Button msubmit=maddcate.findViewById(R.id.submit);
         //final Button mcancel=maddcate.findViewById(R.id.cancel);
 
@@ -256,14 +276,20 @@ public class categories extends AppCompatActivity {
                     msector.requestFocus();
                     return;
                 }
+                if (mcategoryid.getText().toString().trim().isEmpty()) {
+                    mcategoryid.setError("Id is required !!");
+                    mcategoryid.requestFocus();
+                    return;
+                }
 
 
 
-                String id = databaseReference.push().getKey();
+
                 Modeladdcate modeladdcate=new Modeladdcate();
                 modeladdcate.setName(msector.getText().toString());
-                modeladdcate.setId(id);
-                databaseReference.child(id).setValue(modeladdcate);
+                modeladdcate.setId(mcategoryid.getText().toString());
+                String category_id=modeladdcate.getId();
+                databaseReference.child(category_id).setValue(modeladdcate);
 
                 Toast.makeText(categories.this,"Sector Created",Toast.LENGTH_SHORT).show();
 

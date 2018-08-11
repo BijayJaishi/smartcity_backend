@@ -40,11 +40,25 @@
                 app:met_singleLineEllipsis="true"
                 android:textSize="18sp"
                 android:paddingLeft="10dp"
-                android:hint="Sector Name"
+                android:hint="category name"
                 android:id="@+id/sector"
                 app:met_baseColor="@android:color/black"
                 app:met_floatingLabel="highlight"
                 app:met_primaryColor="@color/colorPrimary"/>
+         <com.rengwuxian.materialedittext.MaterialEditText
+             android:textStyle="bold"
+             android:fontFamily="@font/aclonica"
+             android:textColor="#000"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             app:met_singleLineEllipsis="true"
+             android:textSize="18sp"
+             android:paddingLeft="10dp"
+             android:hint="Category id"
+             android:id="@+id/caterory_id"
+             app:met_baseColor="@android:color/black"
+             app:met_floatingLabel="highlight"
+             app:met_primaryColor="@color/colorPrimary"/>
             <LinearLayout
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"

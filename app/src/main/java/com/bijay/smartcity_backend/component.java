@@ -41,6 +41,7 @@ public class component extends AppCompatActivity {
     //DatabaseReference DBR;
     ProgressDialog progressDialog;
     //List<Modeladdcate>modeladdcateList;
+    String Catid ="";
 
 
 
@@ -74,7 +75,7 @@ public class component extends AppCompatActivity {
         progressDialog.show();
 
 
-        databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://work1-1da82.firebaseio.com/Components");
+        databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://work1-1da82.firebaseio.com/Component");
 
 
         maddnewsec.setOnClickListener(new View.OnClickListener() {
@@ -83,14 +84,15 @@ public class component extends AppCompatActivity {
                 addcompo();
             }
         });
+        //add key
+//        if (getIntent() != null)
+//            Catid = getIntent().getStringExtra(Catid);
+//
+//        if (Catid!= null && Catid.isEmpty()){
+            getdatafirebase();
+        }
 
-        //getcate();
-        getdatafirebase();
 
-        String itemname = getIntent().getExtras().getString("itemName");
-        msecname.setText(itemname);
-
-    }
 
 
 
@@ -98,6 +100,7 @@ public class component extends AppCompatActivity {
 
 
         databaseReference=FDB.getReferenceFromUrl("https://work1-1da82.firebaseio.com/Component");
+        //databaseReference.orderByChild("CategoryId").equalTo(Catid);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -220,6 +223,7 @@ public class component extends AppCompatActivity {
     View maddcompo = inflater.inflate(R.layout.addcompoform, null);
 
     final MaterialEditText msector=maddcompo.findViewById(R.id.newcompo);
+    final MaterialEditText msectorid=maddcompo.findViewById(R.id.newcompoid);
     final Button msubmit=maddcompo.findViewById(R.id.submitcompo);
     //final Button mcancel=maddcate.findViewById(R.id.cancel);
 
@@ -232,12 +236,24 @@ public class component extends AppCompatActivity {
                 return;
             }
 
+            if(msectorid.getText().toString().trim().isEmpty()){
+                msectorid.setError("Id required");
+                msectorid.requestFocus();
+                return;
+            }
 
 
-            String id = databaseReference.push().getKey();
+
+
             Modeladdcompo modeladdcompo=new Modeladdcompo();
+            Modeladdcate modeladdcate=new Modeladdcate();
+            String cateid=modeladdcate.getId();
+            modeladdcompo.setCategoryid(cateid);
+
+
             modeladdcompo.setSector_name(msector.getText().toString());
-            modeladdcompo.setSector_id(id);
+            modeladdcompo.setSector_id(msectorid.getText().toString());
+            String id=modeladdcompo.getSector_id();
             databaseReference.child(id).setValue(modeladdcompo);
 
             Toast.makeText(component.this,"Component Created",Toast.LENGTH_SHORT).show();

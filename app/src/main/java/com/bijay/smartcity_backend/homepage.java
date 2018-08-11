@@ -10,6 +10,7 @@ public class homepage extends AppCompatActivity {
 
 
     ImageView mhome;
+    ImageView muser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +18,21 @@ public class homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         mhome=findViewById(R.id.catehome);
+        muser=findViewById(R.id.profile);
 
         mhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(homepage.this,categories.class);
                 startActivity(i);
+            }
+        });
+
+        muser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent j=new Intent(homepage.this,teat.class);
+                startActivity(j);
             }
         });
 

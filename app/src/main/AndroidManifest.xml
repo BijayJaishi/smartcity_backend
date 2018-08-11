@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".homepage" />
         <activity android:name=".categories" />
-        <activity android:name=".component"></activity>
+        <activity android:name=".component" />
+        <activity android:name=".teat"></activity>
     </application>
 
 </manifest>
