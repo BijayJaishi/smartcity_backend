@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -21,15 +21,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
+
         >-->
 
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#4a2806"
+        android:id="@+id/errormsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="PLEASE ENTER"
+        android:fontFamily="@font/aclonica"
+
+        />
+
+    <ImageButton
+        android:layout_below="@+id/errormsg"
+
+        android:clickable="true"
+        android:layout_marginTop="5dp"
+        android:id="@+id/element_pic"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_image_black_24dp" />
+
+    <RadioButton
+        android:layout_below="@+id/element_pic"
+        android:fontFamily="@font/aclonica"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/ele_radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ele_radioButton"
+        android:id="@+id/scrollView2">
+
+
+
     <LinearLayout
+        android:layout_below="@+id/scrollView2"
         android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
 
         >
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textStyle="bold"
+            android:fontFamily="@font/aclonica"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:hint="Category Name"
+            android:id="@+id/cate_name"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:textStyle="bold"
@@ -135,38 +194,22 @@
             app:met_primaryColor="@color/colorPrimary"/>
 
 
-        <ImageButton
 
-            android:clickable="true"
-            android:layout_marginTop="5dp"
-            android:id="@+id/element_pic"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_image_black_24dp" />
-
-        <RadioButton
-            android:fontFamily="@font/aclonica"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Done" />
 
 
 
             <Button
-                android:id="@+id/submit"
+                android:id="@+id/submitelem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="0dp"
                 android:layout_gravity="center"
 
                 android:text="Submit"
 
                 android:textColor="#000" />
+
+
 
             <!--<Button
                  android:layout_marginLeft="20dp"
@@ -184,6 +227,7 @@
 
 
     </LinearLayout>
+    </ScrollView>
 
 
     <!-- </android.support.v7.widget.CardView>-->
@@ -192,4 +236,4 @@
 
 
 
-</android.support.v7.widget.CardView>
+</RelativeLayout>
