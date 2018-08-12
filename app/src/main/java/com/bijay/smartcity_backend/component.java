@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bijay.smartcity_backend.firebase_models.Modeladdcompo;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +33,7 @@ import java.util.List;
 public class component extends AppCompatActivity {
    TextView msecname;
    Button maddnewsec;
-    DatabaseReference databaseReference;
+   DatabaseReference databaseReference;
 
     RecyclerView recyclerView;
     component.Myadapter myadapter;

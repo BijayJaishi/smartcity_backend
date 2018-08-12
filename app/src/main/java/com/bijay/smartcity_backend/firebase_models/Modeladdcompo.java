@@ -1,4 +1,4 @@
-package com.bijay.smartcity_backend;
+package com.bijay.smartcity_backend.firebase_models;
 
 /**
  * Created by Bijay on 8/10/2018.

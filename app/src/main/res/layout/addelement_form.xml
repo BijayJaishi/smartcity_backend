@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:cardElevation="10dp">
+
+    <!--<android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        >-->
+
+    <LinearLayout
+        android:layout_marginTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textStyle="bold"
+            android:fontFamily="@font/aclonica"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:hint="Element Name"
+            android:id="@+id/element_name"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textStyle="bold"
+            android:fontFamily="@font/aclonica"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:hint="Element Address"
+            android:id="@+id/element_address"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textStyle="bold"
+            android:fontFamily="@font/aclonica"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:hint="Element opening hour"
+            android:id="@+id/element_ophour"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textStyle="bold"
+            android:fontFamily="@font/aclonica"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:hint="Element closing hour"
+            android:id="@+id/element_clohour"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textStyle="bold"
+            android:fontFamily="@font/aclonica"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:hint="Element phone number"
+            android:id="@+id/element_phnumber"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textStyle="bold"
+            android:fontFamily="@font/aclonica"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:hint="Element Description"
+            android:id="@+id/element_desc"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textStyle="bold"
+            android:fontFamily="@font/aclonica"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:met_singleLineEllipsis="true"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:hint="Element id"
+            android:id="@+id/element_id"
+            app:met_baseColor="@android:color/black"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="@color/colorPrimary"/>
+
+
+        <ImageButton
+
+            android:clickable="true"
+            android:layout_marginTop="5dp"
+            android:id="@+id/element_pic"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_image_black_24dp" />
+
+        <RadioButton
+            android:fontFamily="@font/aclonica"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done" />
+
+
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="0dp"
+                android:layout_gravity="center"
+
+                android:text="Submit"
+
+                android:textColor="#000" />
+
+            <!--<Button
+                 android:layout_marginLeft="20dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/cancel"
+                 android:layout_weight="1"
+                 android:text="Cancel"
+                 android:background="@color/colorAccent"
+                 android:textColor="#000"/>-->
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <!-- </android.support.v7.widget.CardView>-->
+
+
+
+
+
+</android.support.v7.widget.CardView>

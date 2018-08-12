@@ -1,10 +1,14 @@
-package com.bijay.smartcity_backend;
+package com.bijay.smartcity_backend.Homepage;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.bijay.smartcity_backend.R;
+import com.bijay.smartcity_backend.categories;
+import com.bijay.smartcity_backend.teat;
 
 public class homepage extends AppCompatActivity {
 

@@ -1,7 +1,6 @@
 package com.bijay.smartcity_backend;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -17,15 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.bijay.smartcity_backend.firebase_models.Modeladdcompo;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,28 +33,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class categories extends AppCompatActivity {
 
     private static final String SECTOR_KEY ="sector";
     private static final String TAG ="12" ;
     Button maddnew;
-    DatabaseReference databaseReference;
+    Button maddnewsec,maddnewele;
+    DatabaseReference databaseReference,mdatabaseReference2,mdatabaseReference3;
     //DocumentReference db = FirebaseFirestore.getInstance().document("Smartcity/Sectors");
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView,mrecyclerView2,mrecyclerView3;
     Myadapter myadapter;
+    Myadapter2 myadapter2;
+    Myadapter myadapter3;
     List<Modeladdcate>listdata;
-    FirebaseDatabase FDB;
+    List<Modeladdcompo>listdata2;
+    FirebaseDatabase FDB,FDB2,FDB3;
     //DatabaseReference DBR;
     ProgressDialog progressDialog;
     //List<Modeladdcate>modeladdcateList;
 
-    ToggleButton btn;
-    ExpandableRelativeLayout expandableRelativeLayout;
+    ToggleButton btn,btn2,btn3;
+    ExpandableRelativeLayout expandableRelativeLayout,expandableRelativeLayout2,expandableRelativeLayout3;
 
 
 
@@ -68,6 +67,7 @@ public class categories extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
 
         maddnew=findViewById(R.id.addnew);
+        maddnewsec=findViewById(R.id.addnewsec);
 
 
 
@@ -82,11 +82,24 @@ public class categories extends AppCompatActivity {
         myadapter=new Myadapter(listdata);
         FDB=FirebaseDatabase.getInstance();
 
-        //// progress dialog
+
+        ///for component
+
+        mrecyclerView2 = findViewById(R.id.recyclerView2);
+        mrecyclerView2.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getApplicationContext());
+        mrecyclerView2.setLayoutManager(layoutManager);
+        mrecyclerView2.setItemAnimator(new DefaultItemAnimator());
+        mrecyclerView2.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
+
+        listdata2=new ArrayList<>();
+        myadapter2=new Myadapter2(listdata2);
+        FDB2=FirebaseDatabase.getInstance();
 
 
 
 
+        mdatabaseReference2= FirebaseDatabase.getInstance().getReferenceFromUrl("https://work1-1da82.firebaseio.com/Component");
         databaseReference= FirebaseDatabase.getInstance().getReferenceFromUrl("https://work1-1da82.firebaseio.com/Categories");
 
         maddnew.setOnClickListener(new View.OnClickListener() {
@@ -96,20 +109,45 @@ public class categories extends AppCompatActivity {
             }
         });
 
+        maddnewsec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addcompo();
+            }
+        });
+
         //getcate();
         getdatafirebase();
+        getdatafirebase2();
+
 
 
         btn = (ToggleButton) findViewById(R.id.radioButton);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressDialog = new ProgressDialog(categories.this);
-                progressDialog.setMessage("Loading ....");
-                progressDialog.setCancelable(true);
-                progressDialog.show();
+                //// progress dialog
+//                progressDialog = new ProgressDialog(categories.this);
+//                progressDialog.setMessage("Loading ....");
+//                progressDialog.setCancelable(true);
+//                progressDialog.show();
                 expandableRelativeLayout = (ExpandableRelativeLayout)findViewById(R.id.btnexpand);
                 expandableRelativeLayout.toggle();
+
+            }
+        });
+
+        btn2 = (ToggleButton) findViewById(R.id.radioButton2);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //// progress dialog
+//                progressDialog = new ProgressDialog(categories.this);
+//                progressDialog.setMessage("Loading ....");
+//                progressDialog.setCancelable(true);
+//                progressDialog.show();
+                expandableRelativeLayout2 = (ExpandableRelativeLayout)findViewById(R.id.btnexpand2);
+                expandableRelativeLayout2.toggle();
 
             }
         });
@@ -130,6 +168,51 @@ public class categories extends AppCompatActivity {
                 listdata.add(data);
                 recyclerView.setAdapter(myadapter);
 //                 if (progressDialog.isShowing()){
+//                    progressDialog.dismiss();
+//                }
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    //for component
+
+    void getdatafirebase2(){
+
+
+        mdatabaseReference2=FDB2.getReferenceFromUrl("https://work1-1da82.firebaseio.com/Component");
+        //databaseReference.orderByChild("CategoryId").equalTo(Catid);
+        mdatabaseReference2.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                Modeladdcompo data=dataSnapshot.getValue(Modeladdcompo.class);
+                listdata2.add(data);
+                mrecyclerView2.setAdapter(myadapter2);
+//                if (progressDialog.isShowing()){
 //                    progressDialog.dismiss();
 //                }
 
@@ -238,6 +321,87 @@ public class categories extends AppCompatActivity {
         }
     }
 
+
+    //for component
+
+
+    public class Myadapter2 extends RecyclerView.Adapter<Myadapter2.MyViewHolder>{
+        //Context context;
+        List<Modeladdcompo>listarray2;
+
+        public Myadapter2(List<Modeladdcompo> listarray2) {
+            this.listarray2 = listarray2;
+        }
+
+        @NonNull
+        @Override
+        public Myadapter2.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_components,parent,false);
+            return new MyViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+
+            final Modeladdcompo data2=listarray2.get(position);
+
+
+            holder.txt_item_name2.setText(data2.getSector_name());
+            holder.txt_item_desc2.setText(data2.getSector_id());
+
+            holder.deleteitem2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Toast.makeText(categories.this,"Recently not in use",Toast.LENGTH_LONG).show();
+
+                }
+            });
+
+            holder.edititem2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(categories.this,"Recently not in use",Toast.LENGTH_LONG).show();
+                }
+            });
+
+////            holder.txt_item_name2.setOnClickListener(new View.OnClickListener() {
+////                @Override
+////                public void onClick(View view) {
+////
+////                    Intent intent=new Intent(categories.this,categories.class);
+////
+////                    startActivity(intent);
+//
+//
+//
+//                }
+//            });
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return listarray2.size();
+        }
+
+        public class MyViewHolder extends RecyclerView.ViewHolder {
+            TextView txt_item_desc2,txt_item_name2;
+            Button deleteitem2,edititem2;
+
+            public MyViewHolder(View itemView) {
+                super(itemView);
+
+                txt_item_desc2 = itemView.findViewById(R.id.compoitem_desc);
+                txt_item_name2 = itemView.findViewById(R.id.compoitem_name);
+                deleteitem2=itemView.findViewById(R.id.compodelete);
+                edititem2=itemView.findViewById(R.id.compoedit);
+            }
+        }
+
+    }
+
     /*private void getcate() {
 
         Recyclerviewadapter_1 recyclerviewAdapter1 = new Recyclerviewadapter_1(categories.this,modeladdcateList);
@@ -317,6 +481,85 @@ public class categories extends AppCompatActivity {
             }
         });
         dialog.setView(maddcate);
+
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        dialog.show();
+
+    }
+
+    private void addcompo() {
+
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Add Component");
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View maddcompo = inflater.inflate(R.layout.addcompoform, null);
+
+        final MaterialEditText msector2=maddcompo.findViewById(R.id.newcompo);
+        final MaterialEditText msectorid2=maddcompo.findViewById(R.id.newcompoid);
+        final Button msubmit2=maddcompo.findViewById(R.id.submitcompo);
+        //final Button mcancel=maddcate.findViewById(R.id.cancel);
+
+        msubmit2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (msector2.getText().toString().trim().isEmpty()) {
+                    msector2.setError("Component name required !!");
+                    msector2.requestFocus();
+                    return;
+                }
+
+                if(msectorid2.getText().toString().trim().isEmpty()){
+                    msectorid2.setError("Id required");
+                    msectorid2.requestFocus();
+                    return;
+                }
+
+
+
+
+                Modeladdcompo modeladdcompo=new Modeladdcompo();
+                Modeladdcate modeladdcate=new Modeladdcate();
+                String cateid=modeladdcate.getId();
+                modeladdcompo.setCategoryid(cateid);
+
+
+                modeladdcompo.setSector_name(msector2.getText().toString());
+                modeladdcompo.setSector_id(msectorid2.getText().toString());
+                String id=modeladdcompo.getSector_id();
+                mdatabaseReference2.child(id).setValue(modeladdcompo);
+
+                Toast.makeText(categories.this,"Component Created",Toast.LENGTH_SHORT).show();
+
+                Intent inte=new Intent(categories.this,component.class);
+                startActivity(inte);
+
+                /*Map<String,Object> dataTosave=new HashMap<String, Object>();
+                dataTosave.put(SECTOR_KEY,sectorname);
+                db.set(dataTosave).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                        Log.d(TAG,"Document has been saved");
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG,"Document was not saved!",e);
+                    }
+                });*/
+
+
+
+            }
+        });
+        dialog.setView(maddcompo);
 
         dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override

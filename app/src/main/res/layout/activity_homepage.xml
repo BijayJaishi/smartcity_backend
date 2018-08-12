@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:weightSum="10"
     android:orientation="vertical"
-    tools:context="com.bijay.smartcity_backend.homepage">
+    tools:context="com.bijay.smartcity_backend.Homepage.homepage">
 
 
     <RelativeLayout
